@@ -1,0 +1,33 @@
+before:
+  hooks:
+    - go mod tidy
+builds:
+  - id: protoc-gen-debug
+    main: main.go
+    binary: protoc-gen-debug
+    env:
+      - CGO_ENABLED=0
+    ldflags:
+      - -s
+    goos:
+      - linux
+      - darwin
+      - windows
+    goarch:
+      - amd64
+      - arm64
+    goarm:
+      - 8
+archives:
+  - id: protoc-gen-debug-archive
+    name_template: |-
+      protoc-gen-debug_{{ .Tag }}_{{ .Os }}_{{ .Arch -}}
+    builds:
+      - protoc-gen-debug
+    format_overrides:
+      - goos: windows
+        format: zip
+    files: [""]
+checksum:
+  name_template: "checksums.txt"
+  algorithm: sha256
