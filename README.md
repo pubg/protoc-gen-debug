@@ -15,13 +15,15 @@ go install github.com/pubg/protoc-gen-debug
 
 ## Example
 
-
 ### Dump protoc's input
 ```sh
 protoc \
     --debug_out=./ \
-    --debug_opt=dump_file=request.pb.bin \
-    --debug_opt=parameter=expose_all=true \
+    --debug_opt=dump_binary=true \
+    --debug_opt=dump_json=true \
+    --debug_opt=file_binary=request.pb.bin \
+    --debug_opt=file_json=request.pb.json \
+    --debug_opt=parameter=expose_all=true:foo=bar \
     -I ./ \
     ./example.proto
 ```
@@ -38,10 +40,16 @@ cat request.pb.bin | go run ./cmd/main.go
 1. Check `Redirect input from`
 2. Set dumped file path
 3. Run as Debug Mode
+4. Happy Debugging!
 
 ## Options
-| Option    | Description                           | Default        |
-|-----------|---------------------------------------|----------------|
-| dump_file | A file name to save protoc's input to | request.pb.bin |
-| parameter | Parameters for other plugins          | ""             |
+| Option      | Description                         | Type                   | Default         |
+|-------------|-------------------------------------|------------------------|-----------------|
+| dump_binary | Enable or not to dump binary format | bool                   | true            |
+| file_binary | File name to save protoc's input    | string                 | request.pb.bin  |
+| dump_json   | Enable or not to dump json format   | bool                   | false           |
+| file_json   | File name to save protoc's input    | string                 | request.pb.json |
+| dump_text   | Enable or not to dump text format   | bool                   | false           |
+| file_text   | File name to save protoc's input    | string                 | request.pb.txt  |
+| parameter   | Parameters for other plugins        | colon seperated string | ""              |
 
