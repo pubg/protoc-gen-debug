@@ -2,6 +2,8 @@ package main
 
 import (
 	"flag"
+	"fmt"
+	"os"
 	"strings"
 
 	"google.golang.org/protobuf/compiler/protogen"
@@ -21,7 +23,19 @@ type PluginOptions struct {
 	Parameter  string
 }
 
+var version string = "develop"
+
 func main() {
+	if len(os.Args) == 2 {
+		if os.Args[1] == "--version" {
+			fmt.Println(version)
+		} else if os.Args[1] == "--help" {
+			fmt.Println("USAGE:")
+			fmt.Println("  protoc-gen-debug --version  : print version")
+		}
+		return
+	}
+
 	var flags flag.FlagSet
 	opts := protogen.Options{
 		ParamFunc: flags.Set,
