@@ -10,7 +10,7 @@ This plugin helps you dump protoc's input so you can use it to develop other plu
 You can install it from the [Github Release](https://github.com/pubg/protoc-gen-debug) or with the command below.
 
 ```sh
-go install github.com/pubg/protoc-gen-debug
+go install github.com/pubg/protoc-gen-debug@latest
 ```
 
 ## Example
