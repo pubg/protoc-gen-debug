@@ -1,10 +1,10 @@
 # protoc-gen-debug
 
-When developing a protoc plugin, it is difficult to use debug mode (breakpoint) because of the way protoc communicates with the plugin.
+Debugging a protoc plugin is difficult because protoc communicates with plugins using protobuf, a binary format that is not human-readable.
 
-To debug, you need to pseudo-mimic protoc's input, which is hard to do because protoc and plugin communicate in protobuf, a format that is hard for humans to read.
+As a result, it’s not easy to reproduce or inspect the input that protoc sends to a plugin, which makes setting breakpoints and using a debugger cumbersome.
 
-This plugin helps you dump protoc's input so you can use it to develop other plugins.
+This plugin addresses that issue by capturing and dumping protoc’s input, allowing you to easily reuse it for debugging and developing other plugins.
 
 ## Installation
 You can install it from the [Github Release](https://github.com/pubg/protoc-gen-debug) or with the command below.
